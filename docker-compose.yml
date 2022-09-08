@@ -1,0 +1,14 @@
+version: '3'
+services:
+  apache:
+    build: ./apache
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - 80:80
+  my-sql:
+    image: mysql:latest
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
