@@ -10,5 +10,9 @@ services:
     image: mysql:latest
     volumes:
       - ./db:/docker-entrypoint-initdb.d
+      - db_volume:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
+
+volumes:
+  db_volume:
