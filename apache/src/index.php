@@ -9,7 +9,7 @@
     <tr><th>Id</th><th>Name</th><th>Surname</th></tr>
 <?php
 $mysqli = new mysqli("my-sql", "user", "password", "appDB");
-$result = $mysqli->query("SELECT * FROM users");
+$result = $mysqli->query("SELECT name, surname FROM users");
 foreach ($result as $row){
     echo "<tr><td>{$row['ID']}</td><td>{$row['name']}</td><td>{$row['surname']}</td></tr>";
 }
