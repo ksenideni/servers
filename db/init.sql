@@ -16,13 +16,20 @@ CREATE TABLE IF NOT EXISTS products (
   caloric INTEGER,
   PRIMARY KEY (ID)
 );
-
+CREATE TABLE IF NOT EXISTS dishes (
+  ID INT(11) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL,
+  price INTEGER,
+  PRIMARY KEY (ID)
+);
+--  USERS-INSERT--
 INSERT INTO users (login, password)
 SELECT * FROM (SELECT 'admin', '{SHA}QL0AFWMIX8NRZTKeof9cXsvbvu8=') AS tmp
 WHERE NOT EXISTS (
     SELECT login FROM users WHERE login='admin' AND password='123'
 ) LIMIT 1;
 
+--  PRODUCTS-INSERT--
 INSERT INTO products (name, caloric)
 SELECT * FROM (SELECT 'White chocolate', 554) AS tmp
 WHERE NOT EXISTS (
@@ -39,6 +46,19 @@ INSERT INTO products (name, caloric)
 SELECT * FROM (SELECT 'Milk chocolate', 550) AS tmp
 WHERE NOT EXISTS (
     SELECT name FROM products WHERE name = 'Milk chocolate' AND caloric = 550
+) LIMIT 1;
+
+--  DISHES-INSERT--
+INSERT INTO dishes (name, price)
+SELECT * FROM (SELECT 'Raspberry tartlet', 195) AS tmp
+WHERE NOT EXISTS (
+    SELECT name FROM dishes WHERE name = 'Raspberry tartlet' AND price = 195
+) LIMIT 1;
+
+INSERT INTO dishes (name, price)
+SELECT * FROM (SELECT 'Apple pie', 250) AS tmp
+WHERE NOT EXISTS (
+    SELECT name FROM dishes WHERE name = 'Apple pie' AND price = 250
 ) LIMIT 1;
 
 
